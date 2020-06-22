@@ -1,0 +1,1159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <!-- Fun_getProcXMLparam  用存储过程名，获取xnl中的调用配置-->
+  <!--<JGWL.WindowsForm.WLGoosArrival>
+    <Form_Fhmx_Excel>
+      <functionName returnType="">
+        <parameter name="" type=""></parameter>
+        <outPara name="" type=""></outPara>
+        <commandType>StoredProcedure</commandType>
+        <sql></sql>
+      </functionName>
+    </Form_Fhmx_Excel>
+  </JGWL.WindowsForm.WLGoosArrival>-->
+  
+
+  <JGERP.WL.Client>
+    <Frm_Login>
+      <user>
+        <parameter name="p_user" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select name from t_user where usr_id= :p_user
+        </sql>
+      </user>
+      <GetDept>
+        <parameter name="P_CZYBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USERNAME" type="Char" direction="out"></parameter>
+        <parameter name="P_DEPTCODE" type="Char" direction="out"></parameter>
+        <parameter name="P_DEPTNAME" type="Char" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_GET_USERDEPT
+        </sql>
+      </GetDept>
+      <Login>
+        <parameter name="P_LOCK" type="Char" direction="in"></parameter>
+        <parameter name="P_YWBMBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USERID" type="Char" direction="in"></parameter>
+        <parameter name="P_PWD" type="Varchar2" direction="in"></parameter>
+        <parameter name="P_IPADDRESS" type="Char" direction="in"></parameter>
+        <parameter name="P_MACADDRESS" type="Varchar2" direction="in"></parameter>
+        <parameter name="P_USERNAME" type="Char" direction="out"></parameter>
+        <parameter name="P_ROLE" type="Char" direction="out"></parameter>
+        <parameter name="P_ROLENAME" type="Char" direction="out"></parameter>
+        <parameter name="P_USERLX" type="Char" direction="out"></parameter>
+        <parameter name="P_DEPTNAME" type="Char" direction="out"></parameter>
+        <parameter name="P_CYBH" type="Char" direction="out"></parameter>
+        <parameter name="P_CYMC" type="Char" direction="out"></parameter>
+        <parameter name="P_KFBH" type="Char" direction="out"></parameter>
+        <parameter name="P_KFMC" type="Char" direction="out"></parameter>
+        <parameter name="P_HQBH" type="Char" direction="out"></parameter>
+        <parameter name="P_GLBMGS" type="Decimal" direction="out"></parameter>
+        <parameter name="P_GLBMBH" type="Char" direction="out"></parameter>
+        <parameter name="P_GLBMMC" type="Char" direction="out"></parameter>
+        <parameter name="P_NOTE" type="Char" direction="out"></parameter>
+        <parameter name="P_TOKEN" type="Varchar2" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_USER_LOGIN
+        </sql>
+      </Login>
+      <Login_Reset>
+        <parameter name="P_LOCK" type="Char" direction="in"></parameter>
+        <parameter name="P_YWBMBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USERID" type="Char" direction="in"></parameter>
+        <parameter name="P_PWD" type="Varchar2" direction="in"></parameter>
+        <parameter name="P_IPADDRESS" type="Char" direction="in"></parameter>
+        <parameter name="P_MACADDRESS" type="Varchar2" direction="in"></parameter>
+        <parameter name="P_USERNAME" type="Char" direction="out"></parameter>
+        <parameter name="P_ROLE" type="Char" direction="out"></parameter>
+        <parameter name="P_ROLENAME" type="Char" direction="out"></parameter>
+        <parameter name="P_USERLX" type="Char" direction="out"></parameter>
+        <parameter name="P_DEPTNAME" type="Char" direction="out"></parameter>
+        <parameter name="P_CYBH" type="Char" direction="out"></parameter>
+        <parameter name="P_CYMC" type="Char" direction="out"></parameter>
+        <parameter name="P_KFBH" type="Char" direction="out"></parameter>
+        <parameter name="P_KFMC" type="Char" direction="out"></parameter>
+        <parameter name="P_HQBH" type="Char" direction="out"></parameter>
+        <parameter name="P_GLBMGS" type="Decimal" direction="out"></parameter>
+        <parameter name="P_GLBMBH" type="Char" direction="out"></parameter>
+        <parameter name="P_GLBMMC" type="Char" direction="out"></parameter>
+        <parameter name="P_NOTE" type="Char" direction="out"></parameter>
+        <parameter name="P_TOKEN" type="Varchar2" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_USER_LOGIN
+        </sql>
+      </Login_Reset>
+      <GetMessage>
+        <commandType>Text</commandType>
+        <sql>
+          SELECT USR_ID, NAME, '用户有效期即将到期' AS MESSAGE FROM T_USER WHERE STS = '1' AND SYSDATE + 7 &gt;= YXQ AND YXQ &gt;= SYSDATE
+          UNION ALL
+          SELECT USR_ID, NAME, '用户即将进入休眠状态' AS MESSSAGE FROM T_USER WHERE STS = '1' AND 7 &gt; (90 - (SYSDATE - ZHDLSJ)) AND (90 - (SYSDATE - ZHDLSJ)) &gt; 0
+          UNION ALL
+          SELECT USR_ID, NAME, '用户即将进入注销状态' AS MESSSAGE FROM T_USER WHERE STS = '2' AND 7 &gt; (365 - (SYSDATE - ZHDLSJ)) AND (365 - (SYSDATE - ZHDLSJ)) &gt; 0
+        </sql>
+      </GetMessage>
+    </Frm_Login>
+    <!-- 到货查询-->
+    <Form_dhcx>
+      <bt_searchdhmx>
+        <parameter name="p_isbn" type="Char" direction="in"></parameter>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <parameter name="p_rq1" type="Date" direction="in"></parameter>
+        <parameter name="p_rq2" type="Date" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          a.isbn 书号,
+          a.sm 书名,
+          a.dj 定价,
+          b.yssl 原始册数,
+          b.sl 实际册数,
+          b.ywpc 单据号,
+          b.xrrq 日期,
+          b.dh 单位,
+          (select trim(mc) from t_ghdw where bh = b.dh) 单位名称
+          from t_kcsm a,t_pmsjrwb_bak b where a.id=b.id and b.lxbh='DH'
+          and trim(a.isbn) like trim(:p_isbn)
+          and trim(b.dh) like trim(:p_dh)
+          and b.xrrq &gt; :p_rq1
+          and b.xrrq  &lt; :p_rq2
+        </sql>
+      </bt_searchdhmx>
+    </Form_dhcx>
+    <!-- 退货查询-->
+    <Form_thcx>
+      <bt_searchthmx>
+        <parameter name="p_isbn" type="Char" direction="in"></parameter>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <parameter name="p_rq1" type="Date" direction="in"></parameter>
+        <parameter name="p_rq2" type="Date" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          a.isbn 书号,
+          a.sm 书名,
+          a.dj 定价,
+          b.yssl 原始册数,
+          b.sl 实际册数,
+          b.ywpc 单据号,
+          b.dh 店号,
+          (select trim(dm) from t_dm where dh = b.dh) 店名，
+          b.xrrq 退货时间
+          from t_kcsm a,t_pmsjrwb_bak b where a.id=b.id and b.lxbh='TH'
+          and trim(a.isbn) like trim(:p_isbn)
+          and trim(b.dh) like trim(:p_dh)
+          and b.xrrq &gt; :p_rq1
+          and b.xrrq  &lt; :p_rq2
+        </sql>
+      </bt_searchthmx>
+    </Form_thcx>
+    <!--库存查询-->
+    <Form_kccx>
+      <bt_search_kccx>
+        <parameter name="p_isbn" type="Char" direction="in"></parameter>
+        <parameter name="p_hw" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          a.isbn  书号,
+          a.sm  书名,
+          a.dj  定价,
+          b.hw  货位,
+          b.kccs  库存册数,
+          b.zycs  占用册数，
+          b.kfbh  库房编号,
+          b.ywbmbh  业务部门,
+          b.hqbh  货区
+          from t_kcsm a,t_ltkf b where a.id=b.id 
+          and trim(a.isbn) like trim(:p_isbn)
+          and trim(b.hw) like trim(:p_dh)
+        </sql>
+      </bt_search_kccx>
+    </Form_kccx>
+    <Form_DHLR>
+      <delsearchdhmx_lr>
+        <parameter name="p_flowid" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          delete  t_pmsjrwb where flowid_sj=:p_flowid
+        </sql>
+      </delsearchdhmx_lr>
+      <bt_searchdhmx_lr>
+        <parameter name="p_ywpc" type="Char" direction="in"></parameter>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          a.isbn 书号,
+          a.sm 书名,
+          a.dj 定价,
+          b.yssl 原始册数,
+          b.jhcs 实收册数,
+          a.gysspid 版印次,
+          b.dh 供货单位,
+          b.xrrq 写入日期,
+          trim(b.id) id,flowid_sj
+          from t_kcsm a,t_pmsjrwb b where a.id=b.id and b.lxbh='DH'
+          and trim(b.ywpc)=trim(:p_ywpc)
+          and b.dh =:p_dh
+        </sql>
+      </bt_searchdhmx_lr>
+      <bt_searchdhmx_lr_xxcx>
+        <parameter name="p_isbn" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          sm,
+          dj,
+          gysspid,
+          isbn,
+          trim(id) id
+          from t_kcsm where isbn = :p_isbn
+        </sql>
+      </bt_searchdhmx_lr_xxcx>
+      <bt_searchdhmx_lr_ghdw>
+        <parameter name="p_ghdwh" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          mc,bh
+          from t_ghdw where (bh like :p_ghdwh or mc like :p_ghdwh ) AND ROWNUM=1
+        </sql>
+      </bt_searchdhmx_lr_ghdw>
+      <bt_insertdhmx>
+        <parameter name="p_isbn" type="CHAR" direction="in"></parameter>
+        <parameter name="p_yssl" type="Decimal" direction="in"></parameter>
+        <parameter name="p_scsl" type="Decimal" direction="in"></parameter>
+        <parameter name="p_bh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywpc" type="CHAR" direction="in"></parameter>
+         <parameter name="p_ywbmbh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_lxbh" type="CHAR" direction="in"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="Varchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_GW_DHFH_DATA</sql>
+      </bt_insertdhmx>
+      <bt_submitdhmx>
+        <parameter name="p_ywbmbh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywpc" type="CHAR" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_lxbh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ghdw" type="CHAR" direction="in"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="Varchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_GW_DHFH_SUBMIT</sql>
+      </bt_submitdhmx>
+    
+  </Form_DHLR>
+
+
+    <!--发货查询-->
+    <Form_fhcx>
+      <bt_searchfhmx>
+        <parameter name="p_isbn" type="Char" direction="in"></parameter>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <parameter name="p_rq1" type="Date" direction="in"></parameter>
+        <parameter name="p_rq2" type="Date" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          a.isbn 书号,
+          a.sm 书名,
+          a.dj 定价,
+          b.sjsl 发货册数,
+          b.xjrq 发货时间,
+          decode(b.lxbh,'DH','到货','退货') 发货类型,
+          b.dh 店号,
+          (select trim(dm) from t_dm where dh = b.dh) 店名，
+          b.xsdh 销售单号
+          from t_kcsm a,t_agv_rw_xt_bak b where a.id=b.id
+          and trim(a.isbn) like trim(:p_isbn)
+          and trim(b.dh) like trim(:p_dh)
+          and b.xjrq &gt; :p_rq1
+          and b.xjrq  &lt; :p_rq2 + 1
+        </sql>
+      </bt_searchfhmx>
+    </Form_fhcx>
+    <!--审计查询-->
+    <Form_sjgl>
+      <bt_searchsjsj>
+        <parameter name="p_rq1" type="Date" direction="in"></parameter>
+        <parameter name="p_rq2" type="Date" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          a.usr_id 用户名,
+          a.operationdate 时间,
+          a.messagetype 数据类型,
+          a.message 数据源,
+          a.flowid 数据值
+          from T_OPERATION_LOG a
+          where
+          a.operationdate &gt; trunc(:p_rq1)
+          and a.operationdate  &lt; trunc(:p_rq2 + 1)
+        </sql>
+      </bt_searchsjsj>
+
+      <countsjsj>
+        <parameter name="p_czlx" type="CHAR"  condition=" and czlx=:p_czlx"></parameter>
+        <parameter name="p_ip" type="CHAR" condition=" and ip like :p_ip"></parameter>
+        <parameter name="p_czybh" type="CHAR" condition=" and usr_id=:p_czybh"></parameter>
+        <parameter name="p_begin" type="Date" condition=" and OPERATIONDATE &gt; :p_begin"></parameter>
+        <parameter name="p_end" type="Date" condition=" and OPERATIONDATE &lt; :p_end"></parameter>
+        <parameter name="p_messagetype" type="CHAR" condition=" and messagetype=:p_messagetype"></parameter>
+        <parameter name="p_message" type="CHAR" condition=" and message like :p_message"></parameter>
+        <parameter name="p_result" type="CHAR" condition=" and res = :p_result"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select count(*) from T_OPERATION_LOG where 1=1 
+        </sql>
+      </countsjsj>
+
+      <PROC_SJ_SEARCH>
+        <parameter name="p_czlx" type="CHAR"  direction="in"></parameter>
+        <parameter name="p_ip" type="CHAR" direction="in"></parameter>
+        <parameter name="p_czybh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_begin" type="CHAR" direction="in"></parameter>
+        <parameter name="p_end" type="CHAR"  direction="in"></parameter>
+        <parameter name="p_messagetype" type="CHAR" direction="in"></parameter>
+        <parameter name="p_message" type="CHAR" direction="in"></parameter>
+        <parameter name="p_result" type="CHAR"  direction="in"></parameter>
+        <parameter name="p_minrow" type="CHAR"  direction="in"></parameter>
+        <parameter name="p_maxrow" type="CHAR"  direction="in"></parameter>
+        <parameter name="p_order" type="CHAR"  direction="in"></parameter>
+        <parameter name="P_DATA" type="RefCursor" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="CHAR" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="CHAR" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_SJ_SEARCH
+        </sql>
+      </PROC_SJ_SEARCH>
+      
+      <!--<PROC_SJ_SEARCH>
+        <parameter name="P_CYZ" type="CHAR" direction="in"></parameter>
+        <parameter name="P_DATA" type="RefCursor" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVARCHAR2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SJ_SEARCH</sql>
+      </PROC_SJ_SEARCH>-->
+     
+      
+      <proc_save_sjsj>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_flowid" type="CHAR" direction="in"></parameter>
+        <parameter name="p_bz" type="NVarchar2" direction="in"></parameter>
+        <parameter name="p_message" type="NVarchar2" direction="in"></parameter>
+        <parameter name="p_messagetype" type="Char" direction="in"></parameter>
+        <parameter name="errno" type="Decimal" direction="out"></parameter>
+        <parameter name="errtext" type="CHAR" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>proc_save_sjsj</sql>
+      </proc_save_sjsj>
+    
+  </Form_sjgl>
+    <Frm_UserList>
+      <UserList>
+        <parameter name="P_YWBMBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USER" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          SELECT U.USR_ID, TRIM(U.NAME) AS USR_NAME, U.PY, U.MAIL, U.SJ, U.USER_LX, U.ROLE, T_ROLE.MC AS ROLENAME, 
+          (CASE U.USER_LX WHEN '0' THEN '临时用户' WHEN '1' THEN '长期用户' ELSE '未知' END) AS USERLX, U.STS,
+          (CASE U.STS WHEN '0' THEN '未启用' WHEN '1' THEN '启用' WHEN '2' THEN '休眠' WHEN '3' THEN '注销' WHEN '4' THEN '禁用' WHEN '5' THEN '密码锁定' WHEN '6' THEN '超期锁定' ELSE '未知' END) AS User_STS,
+          (CASE WHEN (SELECT COUNT(1) FROM T_DLLS DL WHERE DL.BMH = U.YWBMBH AND DL.CZYBH = U.USR_ID) > 0 THEN '已登陆' ELSE '未登录' END) AS DLZT
+          FROM T_USER U
+          LEFT OUTER JOIN T_DM ON T_DM.LXBH = '3' AND T_DM.DH = U.BMBH
+          LEFT OUTER JOIN T_ROLE ON T_ROLE.ID = U.ROLE
+          WHERE YWBMBH = :P_YWBMBH AND (USR_ID LIKE :P_USER OR NAME LIKE :P_USER) AND USR_ID &lt;&gt; '9999' AND USR_ID &lt;&gt; '9998' AND USR_ID &lt;&gt; '9997' AND T_ROLE.GIVE = '1'
+        </sql>
+      </UserList>
+      <UserSTSChange>
+        <parameter name="P_YWBMBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USERID" type="Char" direction="in"></parameter>
+        <parameter name="P_USERSTS" type="Char" direction="in"></parameter>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_USER_STSCHANGE
+        </sql>
+      </UserSTSChange>
+      <InitUserPassword>
+        <parameter name="P_YWBMBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USERID" type="Char" direction="in"></parameter>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <parameter name="P_PWD" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_INIT_PASSWORD
+        </sql>
+      </InitUserPassword>
+    </Frm_UserList>
+    <Frm_UserEdit>
+      <AddUser>
+        <parameter name="P_YWBMBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USERID" type="Char" direction="in"></parameter>
+        <parameter name="P_USERNAME" type="Char" direction="in"></parameter>
+        <parameter name="P_PY" type="Char" direction="in"></parameter>
+        <parameter name="P_PWD" type="Char" direction="in"></parameter>
+        <parameter name="P_USERLX" type="Char" direction="in"></parameter>
+        <parameter name="P_ROLE" type="Decimal" direction="in"></parameter>
+        <parameter name="P_PHONE" type="Char" direction="in"></parameter>
+        <parameter name="P_MAIL" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_ADD_USER
+        </sql>
+      </AddUser>
+      <EditUser>
+        <parameter name="P_YWBMBH" type="Char" direction="in"></parameter>
+        <parameter name="P_USERID" type="Char" direction="in"></parameter>
+        <parameter name="P_USERNAME" type="Char" direction="in"></parameter>
+        <parameter name="P_PY" type="Char" direction="in"></parameter>
+        <parameter name="P_USERLX" type="Char" direction="in"></parameter>
+        <parameter name="P_ROLE" type="Decimal" direction="in"></parameter>
+        <parameter name="P_PHONE" type="Char" direction="in"></parameter>
+        <parameter name="P_MAIL" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_EDIT_USER
+        </sql>
+      </EditUser>
+      <GetRole>
+        <commandType>Text</commandType>
+        <sql>SELECT ID, MC FROM T_ROLE WHERE GIVE = '1'</sql>
+      </GetRole>
+    </Frm_UserEdit>
+    <Frm_ChangePassword>
+      <ChangePassword>
+        <parameter name="P_YWBMBH" type="CHAR" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="P_OLDPWD" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_NEWPWD" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_CHANGEPWD</sql>
+      </ChangePassword>
+    </Frm_ChangePassword>
+    <Frm_SystemConfig>
+      <GetConfig>
+        <commandType>Text</commandType>
+        <sql>SELECT * FROM T_SETTINGS</sql>
+      </GetConfig>
+      <SaveConfig>
+        <parameter name="P_PARANAME" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_PARAVALUE" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SAVECONFIG</sql>
+      </SaveConfig>
+    </Frm_SystemConfig>
+    <Frm_MailConfig>
+      <GetConfig>
+        <commandType>Text</commandType>
+        <sql>SELECT * FROM T_MAILCONFIG</sql>
+      </GetConfig>
+      <SaveConfig>
+        <parameter name="P_MAILADDRESS" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_MAILSERVER" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_MAILSERVERPORT" type="Decimal" direction="in"></parameter>
+        <parameter name="P_MAILNAME" type="NVarchar2" direction="in"></parameter>
+        <parameter name="P_MAILPASSWORD" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SAVEMALCONFIG</sql>
+      </SaveConfig>
+    </Frm_MailConfig>
+    <Frm_SecurityConfig>
+      <GetConfig>
+        <commandType>Text</commandType>
+        <sql>SELECT * FROM T_SECURITYCONFIG</sql>
+      </GetConfig>
+      <GetConfig1>
+        <parameter name="P_ID" type="Decimal" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>SELECT * FROM T_SECURITYCONFIG WHERE ID = :P_ID</sql>
+      </GetConfig1>
+      <AddConfig>
+        <parameter name="P_BEGINTIME" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_ENDTIME" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_BEGINIP" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_ENDIP" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_ADD_SECURITYCONFIG</sql>
+      </AddConfig>
+      <EditConfig>
+        <parameter name="P_ID" type="Decimal" direction="in"></parameter>
+        <parameter name="P_BEGINTIME" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_ENDTIME" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_BEGINIP" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_ENDIP" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_EDIT_SECURITYCONFIG</sql>
+      </EditConfig>
+      <DeleteConfig>
+        <parameter name="P_ID" type="Decimal" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_DELETE_SECURITYCONFIG</sql>
+      </DeleteConfig>
+    </Frm_SecurityConfig>
+    <Frm_Main>
+      <UserMenu>
+        <parameter name="p_roleid" type="Decimal" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          <!--select yjmc,ejmc,form from t_menu_user where czy=:p_czy
+          union all
+          select '菜单','修改密码','JGERP.WL.Client.Frm_ChangePassword'  from dual-->
+          select m.yjmc,m.ejmc,form from t_menu m ,t_menu_role mr
+          where  mr.roleid=:p_roleid and mr.menuid=m.id
+          union all
+          select '菜单','修改密码','JGERP.WL.Client.Frm_ChangePassword'  from dual
+        </sql>
+      </UserMenu>
+      <SaveLog>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <parameter name="p_messagetype" type="Char" direction="in"></parameter>
+        <parameter name="p_message" type="NVarchar2" direction="in"></parameter>
+        <parameter name="P_RES" type="Char" direction="in"></parameter>
+        <parameter name="p_flowid" type="Decimal" direction="in"></parameter>
+        <parameter name="P_CZLX" type="NVarchar2" direction="in"></parameter>
+        <parameter name="P_IP" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_SAVE_LOG
+        </sql>
+      </SaveLog>
+      <DELLS>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          DELETE T_DLLS WHERE CZYBH = :p_czy
+        </sql>
+      </DELLS>
+      <GetWarning>
+        <parameter name="p_warn" type="NVarchar2" direction="out"></parameter>
+        <parameter name="errno" type="Decimal" direction="out"></parameter>
+        <parameter name="errtext" type="CHAR" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>
+          PROC_SJ_WARN
+        </sql>
+      </GetWarning>
+    </Frm_Main>
+  </JGERP.WL.Client>
+
+  <JGERP.WL.Client.权限管理>
+    <UserPermission>
+
+      <GetRole>
+        <commandType>Text</commandType>
+        <sql>
+          select  id,mc from  t_role where addpermission='1'
+          <!--select usr_id||','||name text,usr_id from t_user
+          where usr_id not in('9999','9998','9997' )  order by usr_id-->
+        </sql>
+      </GetRole>
+
+      <ShowAllMenu>
+        
+        <commandType>Text</commandType>
+        <sql>
+          <!--Select  yjmc, ejmc,  0 xz,form
+          From t_menu_user where czy=:p_czy
+          order by yjmc, ejmc-->
+          Select  yjmc, ejmc,  0 xz,form,id
+          From t_menu where   give='1' order by yjmc, ejmc
+        </sql>
+      </ShowAllMenu>
+
+      <GetCzyMenu>
+        <parameter name="p_roleid" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          <!--select ad.yjmc, ad.ejmc, nvl2(u.yjmc, 1, 0) xz,ad.form
+          from t_menu_user u right join  t_menu_user ad
+          on  u.yjmc  = ad.yjmc
+          and u.ejmc=ad.ejmc
+          and u.czy=:p_setczy
+          where    ad.czy =:p_czy
+          order by yjmc, ejmc-->
+          select m.yjmc, m.ejmc, nvl2(mr.yjmc, 1, 0) xz,m.form ,m.id from t_menu m left join  t_menu_role mr
+          on m.id=mr.menuid  and mr.roleid=:p_roleid where  m.give='1'
+          order by yjmc, ejmc
+        </sql>
+      </GetCzyMenu>
+
+    </UserPermission>
+  </JGERP.WL.Client.权限管理>
+  <!--退货-->
+  <JGERP.WL.Client.退货录入>
+    <Form_THDJ>
+      <GetDj>
+        <commandType>Text</commandType>
+        <sql>
+          select name,
+          createdate,
+          ywpc,
+          (select trim(dm) from t_dm where dh = t.dh) mc, dh
+          from t_thpc t
+          where zt = '0'
+          order by createdate desc
+        </sql>
+      </GetDj>
+      <AddDj>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_name" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywpc" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_dh" type="CHAR" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          insert into t_thpc
+          (czy, name, createdate, ywpc, dh)
+          values
+          (:p_czy, :p_name, sysdate , :p_ywpc, :p_dh)
+        </sql>
+      </AddDj>
+      
+    </Form_THDJ>
+    <Form_thlr>
+      <bt_searchthmx_lr>
+        <parameter name="p_ywpc" type="Char" direction="in"></parameter>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          a.isbn 书号,
+          a.sm 书名,
+          a.dj 定价,
+          b.yssl 原退数,
+          b.jhcs 实退数,
+          a.gysspid 版印次,
+          b.dh 退货店,
+          b.xrrq 写入日期,trim(b.id) id,flowid_sj
+          from t_kcsm a,t_pmsjrwb b where a.id=b.id and b.lxbh='TH'
+          and trim(b.ywpc)=trim(:p_ywpc)
+          and b.dh =:p_dh
+        </sql>
+      </bt_searchthmx_lr>
+      
+       <delbt_searchthmx_lr>
+        <parameter name="p_flowid" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          delete t_pmsjrwb where flowid_sj=:p_flowid
+        </sql>
+      </delbt_searchthmx_lr>
+      
+      <bt_searchthmx_lr_xxcx>
+        <parameter name="p_isbn" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          sm,
+          dj,
+          gysspid,
+          isbn,
+          trim(id) id
+          from t_kcsm where isbn = :p_isbn
+        </sql>
+      </bt_searchthmx_lr_xxcx>
+      <bt_searchthmx_lr_ghdw>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          dm,dh
+          from t_dm where (dh like :p_dh or dm like :p_dh) AND ROWNUM=1
+        </sql>
+      </bt_searchthmx_lr_ghdw>
+      <bt_insertthmx>
+        <parameter name="p_isbn" type="CHAR" direction="in"></parameter>
+        <parameter name="p_yssl" type="Decimal" direction="in"></parameter>
+        <parameter name="p_scsl" type="Decimal" direction="in"></parameter>
+        <parameter name="p_bh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywpc" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywbmbh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_lxbh" type="CHAR" direction="in"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="Varchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_GW_DHFH_DATA</sql>
+      </bt_insertthmx>
+      <bt_submitthmx>
+        <parameter name="p_ywbmbh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywpc" type="CHAR" direction="in"></parameter>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_lxbh" type="CHAR" direction="in"></parameter>
+        <parameter name="p_dh" type="CHAR" direction="in"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="CHAR" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_GW_DHFH_SUBMIT</sql>
+      </bt_submitthmx>
+    </Form_thlr>
+  
+</JGERP.WL.Client.退货录入>
+
+  <JGERP.WL.Client.发货录入>
+    <Form_FHLR>
+
+      <get_smcs>
+        <parameter name="p_isbn" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select  dj, gysspid,  sm ,isbn,trim(id) id
+          from t_kcsm where isbn = :p_isbn
+          
+        </sql>
+      </get_smcs>
+
+      <get_dw_jy>
+        <parameter name="p_dhordm" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select count(1) d_row from t_dm where trim(dh) like trim(:p_dhordm) or trim(dm) like  trim(:p_dhordm)
+        </sql>
+      </get_dw_jy>
+
+      <get_dw_dm>
+        <parameter name="p_dhordm" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select max(trim(dm)) dm,max(trim(dh)) dh from t_dm where dh like:p_dhordm or dm like:p_dhordm
+        </sql>
+      </get_dw_dm>
+
+      <get_agv_xt>
+        <parameter name="p_ph" type="Char" direction="in"></parameter>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select
+          (select max(isbn) from t_kcsm where id = t_agv_rw_xt.id) 书号,
+          (select max(sm) from t_kcsm where id = t_agv_rw_xt.id) 书名,
+          (select max(dj) from t_kcsm where id = t_agv_rw_xt.id) 定价,
+          yssl 原始册数,
+          sjsl 实收册数,
+          (select max(gysspid) from t_kcsm where id = t_agv_rw_xt.id) 版印次,
+          dh 接收单位,
+          xjrq 写入日期,trim(id) id,flowid_xj
+          from t_agv_rw_xt
+          where ph = :p_ph and dh=:p_dh order by flowid_xj desc
+        </sql>
+      </get_agv_xt>
+      <del_agv_xt>
+        <parameter name="p_flowid" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          delete  t_agv_rw_xt where flowid_xj=:p_flowid
+        </sql>
+      </del_agv_xt>
+      
+      <insert_agv_xt>
+        <parameter name="p_djh" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_dh" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_sh" type="Char" direction="in"></parameter>
+        <parameter name="p_dj" type="Decimal" direction="in"></parameter>
+        <parameter name="p_ybc" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_ycs" type="Decimal" direction="in"></parameter>
+        <parameter name="p_sbcs" type="Decimal" direction="in"></parameter>
+        <parameter name="p_djly" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_hwh" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <parameter name="errno" type="Decimal" direction="out"></parameter>
+        <parameter name="errtext" type="VARCHAR2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SET_AGV</sql>
+      </insert_agv_xt>
+
+        <insert_agv_xt_bak>
+        <parameter name="p_ph" type="Char" direction="in"></parameter>
+        <parameter name="p_dh" type="Char" direction="in"></parameter>
+        <parameter name="p_czy" type="Char" direction="in"></parameter>
+        <parameter name="errno" type="Decimal" direction="out"></parameter>
+        <parameter name="errtext" type="CHAR" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SET_AGV_BAK</sql>
+      </insert_agv_xt_bak>
+
+  </Form_FHLR>
+
+    <Form_FHDJ>
+      <GetDj>
+        <commandType>Text</commandType>
+        <sql>
+          select name,
+          createdate,
+          ywpc,
+          (select trim(dm) from t_dm where dh = t.dh) mc, dh
+          from t_fhpc t
+          where zt = '0'
+          order by createdate desc
+        </sql>
+      </GetDj>
+      <AddDj>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_name" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywpc" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_dh" type="CHAR" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          insert into t_fhpc
+          (czy, name, createdate, ywpc, dh)
+          values
+          (:p_czy, :p_name, sysdate , :p_ywpc, :p_dh)
+        </sql>
+      </AddDj>
+    </Form_FHDJ>
+  </JGERP.WL.Client.发货录入>
+
+  <JGERP.WL.DataAccess>
+    <ExecuteFromXml>
+      <PROC_TOKEN_CONVERT>
+        <parameter name="P_TOKEN" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_MACADDRESS" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_CZYBH" type="VARCHAR2" direction="out"></parameter>
+        <parameter name="P_ERRORCODE" type="Decimal" direction="out"></parameter>
+        <parameter name="P_ERRORMESSAGE" type="NVarchar2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_TOKEN_CONVERT</sql>
+      </PROC_TOKEN_CONVERT>
+    </ExecuteFromXml>
+  </JGERP.WL.DataAccess>
+
+  <JGERP.WL.Client.审核管理>
+    <Form_SJ>
+      <SearchShenHe>
+        <parameter name="p_user" type="CHAR"  condition=" and czy=:p_user" ></parameter>
+        <parameter name="p_lx" type="CHAR" condition=" and lx=:p_lx"  ></parameter>
+        <parameter name="p_begin" type="Date" condition="  and createdate &gt; :p_begin" ></parameter>
+        <parameter name="p_end" type="Date" condition="  and createdate &lt; :p_end" ></parameter>
+        <parameter name="p_zt" type="CHAR" condition=" and zt=:p_zt" ></parameter>
+        <parameter name="p_res" type="CHAR" condition=" and res=:p_res" ></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select createdate 操作时间,name 姓名,ip,lx 类型,detail 操作详情,res 结果,zt 状态,id,text from T_SJ 
+          where 1=1
+        </sql>
+      </SearchShenHe>
+      
+      <PROC_SJ_DELETE>
+        <parameter name="p_id" type="Decimal" direction="in"></parameter>
+        <parameter name="errno" type="Decimal" direction="out"></parameter>
+        <parameter name="errtext" type="VARCHAR2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SJ_DELETE</sql>
+      </PROC_SJ_DELETE>
+
+      <PROC_SJ_HANDLE>
+        <parameter name="p_id" type="Decimal" direction="in"></parameter>
+        <parameter name="p_res" type="CHAR" direction="in"></parameter>
+        <parameter name="errno" type="Decimal" direction="out"></parameter>
+        <parameter name="errtext" type="VARCHAR2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SJ_HANDLE</sql>
+      </PROC_SJ_HANDLE>
+    </Form_SJ>
+
+    <FormBeifen>
+      <Searcht_sjbf>
+        <parameter name="p_begin" type="Date" direction="in"></parameter>
+        <parameter name="p_end" type="Date" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql> 
+          select id, createdate 备份时间, text 备注, name 备份人
+          <!--,sizemb 大小-->
+          from t_sjbf where createdate>:p_begin and createdate &lt; :p_end
+          order by  createdate desc
+        </sql>
+      </Searcht_sjbf>
+
+      <Beifen>
+        <parameter name="P_TEXT" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="P_NAME" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="ERRNO" type="Decimal" direction="out"></parameter>
+        <parameter name="ERRTEXT" type="VARCHAR2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SJBF</sql>
+      </Beifen>
+      
+      <PROC_SJ_Recovery>
+        <parameter name="p_bfid" type="Decimal" direction="in"></parameter>
+        <parameter name="errno" type="Decimal" direction="out"></parameter>
+        <parameter name="errtext" type="VARCHAR2" direction="out"></parameter>
+        <commandType>StoredProcedure</commandType>
+        <sql>PROC_SJ_Recovery</sql>
+      </PROC_SJ_Recovery>
+    </FormBeifen>
+  </JGERP.WL.Client.审核管理>
+
+  <JGERP.WL.Client.日志管理>
+    <btnGzlSearch_Click location="2">
+      <parameter name="p_user" type="CHAR"  condition=" and czybh=:p_user" location="0"></parameter>
+      <parameter name="p_job" type="CHAR" condition=" and id_job=:p_job"  location="0"></parameter>
+      <parameter name="p_begin" type="DateTime" condition="  and trunc(createdate) &gt;= :p_begin"  location="0"></parameter>
+      <parameter name="p_end" type="DateTime" condition="  and trunc(createdate) &lt;= :p_end"  location="0"></parameter>
+      <parameter name="p_office" type="CHAR" condition=" and office=:p_office" location="1"></parameter>
+      <parameter name="p_team" type="CHAR" condition=" and team=:p_team" location="1"></parameter>
+      <commandType>Text</commandType>
+      <sql>
+        select t.*, trim(u.name) 姓名,office 科室,
+        team 班组   from (   select nvl(t1.czybh,t2.czybh) 编号,
+        nvl(t1.createdate, t2.createdate) 日期,
+        nvl(t1.id_job,t2.id_job) 工种,
+        nvl(t1.cs,0) 册数,
+        nvl(t1.my,0) 码洋,
+        nvl(t1.times,0) 次数,
+        nvl(t2.pz,0) 品种,
+        nvl(t2.js,0) 件数
+        from (select czybh,
+        trunc(createdate) createdate,
+        id_job,
+        count(*) times,
+        sum(cs) cs,
+        sum(my) my
+        from t_gzltimes
+        where 1 = 1 {0}
+        group by czybh, trunc(createdate), id_job) t1
+        full join (select czybh,
+        trunc(createdate) createdate,
+        id_job,
+        sum(pz) pz,
+        sum(js) js
+        from t_gzl2
+        where 1 = 1  {0}
+        group by czybh, trunc(createdate), id_job) t2
+        on t1.czybh = t2.czybh
+        and t1.createdate = t2.createdate
+        and t1.id_job = t2.id_job )t ,t_user u
+        where t.编号 = u.usr_id  {1}
+      </sql>
+    </btnGzlSearch_Click>
+    
+    <Form_Log_tongji>
+      <!--<parameter name="p_begin" type="Date" condition="  and createdate &gt; :p_begin" ></parameter>
+      <parameter name="p_end" type="Date" condition="  and createdate &lt; :p_end" ></parameter>
+      <parameter name="p_zt" type="CHAR" condition=" and zt=:p_zt" ></parameter>
+      <parameter name="p_res" type="CHAR" condition=" and re=:p_res" ></parameter>
+      <commandType>Text</commandType>
+      <sql>
+        select createdate 操作时间,name 姓名,ip,lx 类型,detail 操作详情,res 结果,zt 状态,id,text from T_SJ
+        where 1=1
+      </sql>-->
+
+      <czlxComboBox>
+        <commandType>Text</commandType>
+        <sql>
+          select lx from t_czlx order by xh
+        </sql>
+      </czlxComboBox>
+      
+      <getChart>
+        <parameter name="p_begin" type="Date" condition="  and OPERATIONdate &gt; :p_begin" ></parameter>
+        <parameter name="p_end" type="Date" condition="  and OPERATIONdate &lt; :p_end" ></parameter>
+        <parameter name="p_czlx" type="CHAR" condition=" and czlx=:p_czlx" ></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select czlx,res,count(*) value  from t_operation_log
+     where 1=1
+        </sql>
+        <lastsql>
+          group by czlx,res
+        </lastsql>
+      </getChart>
+    </Form_Log_tongji>
+  </JGERP.WL.Client.日志管理>
+
+  <JGERP.WL.Client.到货录入>
+    <Form_DJ>
+      <GetDj> 
+         <commandType>Text</commandType>
+         <sql>
+            select name,
+            createdate,
+            ywpc,
+            (select trim(mc) from t_ghdw where bh = t.ghdw) mc, ghdw
+            from t_dhpc t
+            where zt = '0'
+            order by createdate desc
+         </sql> 
+      </GetDj>
+      <AddDj>
+        <parameter name="p_czy" type="CHAR" direction="in"></parameter>
+        <parameter name="p_name" type="CHAR" direction="in"></parameter>
+        <parameter name="p_ywpc" type="VARCHAR2" direction="in"></parameter>
+        <parameter name="p_ghdw" type="CHAR" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          insert into t_dhpc
+          (czy, name, createdate, ywpc, ghdw)
+          values
+          (:p_czy, :p_name, sysdate , :p_ywpc, :p_ghdw)
+        </sql>
+      </AddDj>
+    </Form_DJ>
+  </JGERP.WL.Client.到货录入>
+
+  <Common>
+    <Common> 
+      <t_user>
+        <commandType>Text</commandType>
+        <sql>
+          select usr_id 编号, name 名称 from t_user
+        </sql>
+      </t_user>
+      <t_user2>
+        <parameter name="p_czybh" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select usr_id 编号, name 名称 from t_user where usr_id=:p_czybh
+        </sql>
+      </t_user2>
+      <t_ghdw>
+        <commandType>Text</commandType>
+        <sql>
+          select bh 编号,trim(mc)名称 from t_ghdw
+        </sql>
+      </t_ghdw>
+
+      <t_dm>
+        <commandType>Text</commandType>
+        <sql>
+          select dh 编号,trim(dm)名称 from t_dm where lxbh='0'
+        </sql>
+      </t_dm>
+      <ywbm>
+        <commandType>Text</commandType>
+        <sql>
+          select dh 编号,trim(dm) 名称 from t_dm where lxbh='1' order by dh
+        </sql>
+      </ywbm>
+    </Common>
+  </Common>
+  
+  <Report>
+    <Form_Login> 
+        <PROC_UserLogin_Performance>
+          <parameter name="p_user" type="CHAR" direction="in"></parameter>
+          <parameter name="p_pwd" type="CHAR" direction="in"></parameter>
+          <parameter name="p_username" type="VARCHAR2" direction="out"></parameter>
+          <parameter name="errno" type="Decimal" direction="out"></parameter>
+          <parameter name="errtext" type="VARCHAR2" direction="out"></parameter>
+          <commandType>StoredProcedure</commandType>
+          <sql>PROC_USERLOGIN_PERFORMANCE</sql>
+        </PROC_UserLogin_Performance>
+    </Form_Login>
+
+    <MainFrame>
+      <LoadMenu>
+        <parameter name="p_czybh" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select yjmc,ejmc ,form from V_CDXZ t where yybh='03' and czybh=:p_czybh
+        </sql>
+      </LoadMenu>
+
+      <t_loginrecord>
+        <parameter name="p_czybh" type="Char" direction="in"></parameter>
+        <parameter name="p_lx" type="Char" direction="in"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          insert into t_loginrecord
+          (czybh, czyname,  device, lx )
+          select usr_id ,trim(name) ,'PC',:p_lx from t_user where usr_id=:p_czybh
+        </sql>
+      </t_loginrecord>
+    </MainFrame>
+
+    <THSearchRpt>
+      <SearchRpt>
+        <parameter name="p_ywbm" type="Char" condition=" and ywbmbh =:p_ywbm"></parameter>
+        <parameter name="p_begin" type="Date" condition=" and dbrq >:p_begin"></parameter>
+        <parameter name="p_end" type="Date" condition=" and dbrq &lt; :p_end"></parameter>
+        <parameter name="p_ghdw" type="Char" condition=" and hybh =  :p_ghdw"></parameter>
+        <parameter name="p_thlx" type="Char" condition=" and thlx =  :p_thlx"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select (select trim(mc) from t_ghdw where bh = h.hybh) ghdwmc,
+          count(distinct ywpch) tds,
+          count(distinct s.id) zpz,
+          sum(thcs) zcs,
+          sum(thcs * dj) zmy,
+          sum(sys) zsy,hybh,
+          decode(thlx,'ZC','正常','KT','空退','ZT','直退') thlx
+          from t_hythmx@c_link_wl_sl h, t_kcsm s
+          where h.id=s.id
+        </sql>
+        <lastsql>
+          group by ywbmbh, hybh,thlx
+        </lastsql>
+      </SearchRpt> 
+    </THSearchRpt>
+
+    <THSearch>
+      <SearchHythhz>
+        <parameter name="p_ywbm" type="Char" condition=" and ywbmbh =:p_ywbm"></parameter>
+        <parameter name="p_begin" type="Date" condition=" and thrq >:p_begin"></parameter>
+        <parameter name="p_end" type="Date" condition=" and thrq &lt; :p_end"></parameter>
+        <parameter name="p_ghdw" type="Char" condition=" and hybh =  :p_ghdw"></parameter>
+        <parameter name="p_thlx" type="Char" condition=" and thlx =  :p_thlx"></parameter>
+        <commandType>Text</commandType>
+        <sql>
+          select trim(ywpch) ywpch ,zpz,zcs,zmy,zsy,hybh,
+          decode(thlx,'ZC','正常','KT','空退','ZT','直退') thlx  from t_hythhz@c_link_wl_sl where 1=1
+        </sql>
+      </SearchHythhz>
+    </THSearch>
+    
+  </Report>
+</root>

@@ -1,0 +1,77 @@
+<!--***********************************************************************************
+
+   Toolkit for WPF
+
+   Copyright (C) 2007-2018 Xceed Software Inc.
+
+   This program is provided to you under the terms of the Microsoft Public
+   License (Ms-PL) as published at http://wpftoolkit.codeplex.com/license 
+
+   For more features, controls, and fast professional support,
+   pick up the Plus Edition at https://xceed.com/xceed-toolkit-plus-for-wpf/
+
+   Stay informed: follow @datagrid on Twitter or Like http://facebook.com/datagrids
+
+  **********************************************************************************-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Controls">
+   <ResourceDictionary.MergedDictionaries>
+        <local:VersionResourceDictionary AssemblyName="Controls" SourcePath="MetroScrollViewer/Themes/Generic.xaml" />
+       <!--<Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Themes/Generic/Buttons.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Themes/Generic/Common.xaml" />
+
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Chromes/Themes/Generic.xaml" />
+
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="BusyIndicator/Themes/Generic.xaml" />
+
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="ButtonSpinner/Themes/Generic.xaml" />
+
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Calculator/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="CalculatorUpDown/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Primitives/Themes/Generic/WindowControl.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Primitives/Themes/Generic/SelectorItem.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="CheckComboBox/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="CheckListBox/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="ChildWindow/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="CollectionControl/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="ColorCanvas/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="ColorPicker/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="DropDownButton/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="IconButton/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Magnifier/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="MessageBox/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="DateTimeUpDown/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="DateTimePicker/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="MultiLineTextEditor/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="NumericUpDown/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Pie/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="RangeSlider/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="SplitButton/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="PropertyGrid/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="RichTextBoxFormatBar/Themes/Generic.xaml" />
+
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="TimePicker/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="TimeSpanUpDown/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="WatermarkComboBox/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="WatermarkTextBox/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Wizard/Themes/Generic.xaml" />
+      <Controls:VersionResourceDictionary AssemblyName="Controls" SourcePath="Zoombox/Themes/Generic.xaml" />-->
+   </ResourceDictionary.MergedDictionaries>
+
+     
+
+    <Style TargetType="{x:Type local:HamburgerMenuItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:HamburgerMenuItem}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
